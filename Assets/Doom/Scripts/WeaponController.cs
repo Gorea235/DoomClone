@@ -26,7 +26,10 @@ public class WeaponController : MonoBehaviour
         if (buttonFire1)
         {
             Debug.Log("fire1 clicked");
-            Debug.Log(HitScanCenterPoint());
+            GameObject hit = HitScanCenterPoint();
+            Debug.Log(hit);
+            EnemyController enemy = hit?.GetComponent<EnemyController>();
+            enemy?.Damage();
         }
     }
 
