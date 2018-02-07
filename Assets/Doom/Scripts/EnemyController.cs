@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     #region Unity Bindings
 
+    public GameObject player;
     public AudioSource m_audioSource;
     public AudioClip[] m_hurtSounds;
 
@@ -20,7 +21,16 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        transform.LookAt(player.transform);
+        Vector3 newRot = transform.eulerAngles;
+        newRot.x = 0;
+        transform.eulerAngles = newRot;
 
+        float oldPosY = transform.localPosition.y;
+        transform.Translate(new Vector3(0, 0, 1f * Time.deltaTime));
+        Vector3 newPos = transform.localPosition;
+        newPos.y = oldPosY;
+        transform.localPosition = newPos;
     }
 
     #endregion
