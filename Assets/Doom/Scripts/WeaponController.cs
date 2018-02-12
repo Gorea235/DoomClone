@@ -33,7 +33,6 @@ public class WeaponController : MonoBehaviour
     class ObjDamageStore
     {
         public float Damage { get; set; }
-        // item 1: start, item 2: end
         public List<Vector3> BulletHits { get; }
 
         public ObjDamageStore(float damage, Vector3 hit)
@@ -175,7 +174,8 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < m_numberBulletsPerShot; i++)
         {
             // given the rotation and the distance from centre, we calculate the
-            // vector that it represents
+            // vector that it represents, and then offset it by the given amount
+            // to allow translation to the centre of the screen
             spreadPoints[i] = new Vector3(points[i].Item2 * Mathf.Cos(points[i].Item1 * Mathf.Deg2Rad),
                                           points[i].Item2 * Mathf.Sin(points[i].Item1 * Mathf.Deg2Rad),
                                           z) + offsetVector;
