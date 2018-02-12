@@ -9,23 +9,30 @@ public class EnemyController : MonoBehaviour
     #region Unity Bindings
 
     public AudioClip[] m_hurtSounds;
+    public AudioClip m_deathSound;
     public float m_health;
+    public bool m_active = true;
     public bool m_chase = true;
     public Vector3 m_lookAtOffset;
     public float m_maxMoveSpeed = 1f;
     public float m_moveSpeedScale = 1f;
     public float m_acceleration = 1f;
     public float m_deceleration = 1f;
+    public float m_damage = 1f;
+    public float m_range = 1f;
+    public float m_damageRate = 1f; // per second
 
     #endregion
 
     #region Private Fields
 
     GameObject _player;
+    PlayerController _playerController;
     AudioSource _audioSource;
     Animator _animator;
-    bool _chasing;
+    bool _dead;
     float _currentMoveSpeed;
+    float _lastHit;
 
     #endregion
 
@@ -34,49 +41,55 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _player = GameObject.Find("FPSController");
+        _playerController = _player.GetComponentInChildren<PlayerController>();
         _audioSource = gameObject.GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (m_chase)
+        if (_dead)
+            return;
+
+        if (m_active)
         {
-            if (!_chasing)
+            if (Vector3.Distance(gameObject.transform.position, _player.transform.position) <= m_range)
             {
-                SetChasing();
-                _chasing = true;
+                SetAttacking();
+                if (Time.realtimeSinceStartup - _lastHit >= m_damageRate)
+                {
+                    _playerController.Damage(m_damage);
+                    _lastHit = Time.realtimeSinceStartup;
+                }
             }
-            DoChasePlayer(true);
+            else
+            {
+                if (m_chase)
+                {
+                    SetChasing();
+                    DoChasePlayer(true);
+                }
+                else
+                    SetIdling();
+            }
         }
-        else if (_chasing)
-        {
+        else
             SetIdling();
-            _chasing = false;
-        }
     }
 
     #endregion
 
     #region Helper Methods
 
-    void ApplyAnimationState(string anim, float transDuration,
-                             bool isIdle, bool isRunning, bool isAttacking, bool isDead)
-    {
-        _animator.CrossFade(anim, transDuration);
-        _animator.SetBool("IsIdle", isIdle);
-        _animator.SetBool("IsRunning", isRunning);
-        _animator.SetBool("IsAttacking", isAttacking);
-        _animator.SetBool("IsDead", isDead);
-    }
+    void ApplyAnimationState(int state) => _animator.SetInteger("State", state);
 
-    void SetIdling() => ApplyAnimationState("Idle", 0.1f, true, false, false, false);
+    void SetIdling() => ApplyAnimationState(0);
 
-    void SetChasing() => ApplyAnimationState("RunningCycle", 0.1f, false, true, false, false);
+    void SetChasing() => ApplyAnimationState(1);
 
-    void SetAttacking() => ApplyAnimationState("Attacking", 0.1f, false, false, true, false);
+    void SetAttacking() => ApplyAnimationState(2);
 
-    void SetDead() => ApplyAnimationState("Dead", 0.1f, false, false, false, true);
+    void SetDead() => _animator.SetBool("IsDead", true);
 
     void DoChasePlayer(bool accelerate)
     {
@@ -98,13 +111,19 @@ public class EnemyController : MonoBehaviour
         transform.localPosition = newPos;
     }
 
+    public void Die()
+    {
+        _dead = true;
+        SetDead();
+        _audioSource.clip = m_deathSound;
+        _audioSource.Play();
+    }
+
     public void Damage(float amount)
     {
         m_health -= amount;
         if (m_health <= 0)
-        {
-            // die
-        }
+            Die();
         else
         {
             _audioSource.clip = m_hurtSounds[Random.Range(0, m_hurtSounds.Length)];
