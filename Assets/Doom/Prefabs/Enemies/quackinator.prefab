@@ -1201,9 +1201,10 @@ MonoBehaviour:
   m_moveSpeedScale: -1
   m_acceleration: 0.2
   m_deceleration: 0.2
-  m_damage: 3
+  m_damage: 5
   m_range: 2
   m_damageRate: 0.8
+  m_killScore: 1
 --- !u!136 &136660820555138724
 CapsuleCollider:
   m_ObjectHideFlags: 1
