@@ -86,10 +86,10 @@ ModelImporter:
     4300004: Legs
     4300006: duck_body
     4300008: duck_eye
-    7400000: Idle
-    7400002: Run
-    7400004: Attack
-    7400006: Death
+    7400000: QuackinatorIdle
+    7400002: QuackinatorRun
+    7400004: QuackinatorAttack
+    7400006: QuackinatorDeath
     9500000: //RootNode
     13700000: duck_body
     13700002: duck_eye
@@ -124,7 +124,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: QuackinatorIdle
       takeName: Armature|Arnature_animations
       firstFrame: 140
       lastFrame: 160
@@ -152,7 +152,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Run
+      name: QuackinatorRun
       takeName: Armature|Arnature_animations
       firstFrame: 1
       lastFrame: 55
@@ -180,7 +180,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Attack
+      name: QuackinatorAttack
       takeName: Armature|Arnature_animations
       firstFrame: 60
       lastFrame: 76
@@ -208,7 +208,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Death
+      name: QuackinatorDeath
       takeName: Armature|Arnature_animations
       firstFrame: 80
       lastFrame: 105
