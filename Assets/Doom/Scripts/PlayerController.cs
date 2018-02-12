@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
@@ -14,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     #region Private Fields
 
+    DataStore _dataStorage;
     AudioSource _audioSource;
 
     #endregion
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        _dataStorage = GameObject.Find("DataStore").GetComponent<DataStore>();
         _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         if (m_health <= 0)
         {
             Debug.Log("failed game");
+            _dataStorage.SetSucceeded(false);
         }
         else
         {

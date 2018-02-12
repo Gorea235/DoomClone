@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class EnemyController : MonoBehaviour
 {
     #region Unity Bindings
@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public float m_damage = 1f;
     public float m_range = 1f;
     public float m_damageRate = 1f; // per second
+    public float m_killScore = 1f;
 
     #endregion
 
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour
 
     GameObject _player;
     PlayerController _playerController;
+    DataStore _dataStorage;
     AudioSource _audioSource;
     Animator _animator;
     bool _dead;
@@ -42,6 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         _player = GameObject.Find("FPSController");
         _playerController = _player.GetComponentInChildren<PlayerController>();
+        _dataStorage = GameObject.Find("DataStore").GetComponent<DataStore>();
         _audioSource = gameObject.GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
     }
@@ -111,12 +114,16 @@ public class EnemyController : MonoBehaviour
         transform.localPosition = newPos;
     }
 
-    public void Die()
+    public void Die(bool applyScore = true)
     {
         _dead = true;
         SetDead();
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<Collider>().enabled = false;
         _audioSource.clip = m_deathSound;
         _audioSource.Play();
+        if (applyScore)
+            _dataStorage.AddScore(m_killScore);
     }
 
     public void Damage(float amount)
