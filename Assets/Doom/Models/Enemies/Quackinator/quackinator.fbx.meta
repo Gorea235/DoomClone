@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 95c42f4269ce0e541a6ccbff481ddd44
-timeCreated: 1518293807
+guid: 7480d7f278e273640bca496bf607af6a
+timeCreated: 1518447687
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -77,46 +77,28 @@ ModelImporter:
     400066: Right-Arm
     400068: thigh.l
     400070: thigh.r.001
+    2100000: RightArm
+    2100002: Legs
+    2100004: Material
+    2100006: Material.001
     4300000: Right-Arm
     4300002: Left-Arm
     4300004: Legs
     4300006: duck_body
     4300008: duck_eye
-    7400000: QuackinatorRun
-    7400002: QuackinatorAttack
-    7400004: QuackinatorDie
+    7400000: Armature|Arnature_animations
     9500000: //RootNode
     13700000: duck_body
     13700002: duck_eye
     13700004: Left-Arm
     13700006: Legs
     13700008: Right-Arm
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Legs
-    second: {fileID: 2100000, guid: d909978e07f6cfe4e9d784fb5c3a8588, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 7a84b8e10f07e1e46854a9c40744b23d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 87dcff2db36ca6a4eac183a211b23996, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RightArm
-    second: {fileID: 2100000, guid: 561ce098f3c4a5249b5a79e2752aef70, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -137,91 +119,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: QuackinatorRun
-      takeName: Armature|Arnature_animations
-      firstFrame: 1
-      lastFrame: 55
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: QuackinatorAttack
-      takeName: Armature|Arnature_animations
-      firstFrame: 60
-      lastFrame: 76
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: QuackinatorDie
-      takeName: Armature|Arnature_animations
-      firstFrame: 80
-      lastFrame: 104
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -239,7 +137,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
