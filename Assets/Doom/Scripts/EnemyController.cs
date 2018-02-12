@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     #region Unity Bindings
 
-    public GameObject player;
+    public GameObject m_player;
     public AudioSource m_audioSource;
     public AudioClip[] m_hurtSounds;
 
@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(player.transform);
+        transform.LookAt(m_player.transform);
         Vector3 newRot = transform.eulerAngles;
         newRot.x = 0;
         transform.eulerAngles = newRot;
