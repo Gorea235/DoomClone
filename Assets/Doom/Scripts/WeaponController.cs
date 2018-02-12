@@ -9,7 +9,6 @@ public class WeaponController : MonoBehaviour
 {
     #region Unity Bindings
 
-    public Camera m_playerCamera;
     public int m_numberBulletsPerShot;
     public float m_spreadRadius;
     /// <summary>
@@ -19,7 +18,35 @@ public class WeaponController : MonoBehaviour
     /// even.
     /// </summary>
     public int m_sectorSplit = 4;
+    public float m_damagePerShot;
+    public float m_maxRange;
+    public float m_recoilTime;
     public GameObject m_bulletTrail;
+    public GameObject m_bulletTrailOriginObj;
+
+    #endregion
+
+    #region Private Classes
+
+    class ObjDamageStore
+    {
+        public float Damage { get; set; }
+        // item 1: start, item 2: end
+        public List<Vector3> BulletHits { get; }
+
+        public ObjDamageStore(float damage, Vector3 hit)
+        {
+            Damage = 0;
+            BulletHits = new List<Vector3>();
+            AddHit(damage, hit);
+        }
+
+        public void AddHit(float damage, Vector3 hit)
+        {
+            Damage += damage;
+            BulletHits.Add(hit);
+        }
+    }
 
     #endregion
 
@@ -27,6 +54,8 @@ public class WeaponController : MonoBehaviour
 
     Vector2 _centerScreen = new Vector2(Screen.width / 2, Screen.height / 2);
     readonly float _sectorSize;
+    GameObject _player;
+    float _lastShootTime;
 
     #endregion
 
@@ -41,31 +70,50 @@ public class WeaponController : MonoBehaviour
 
     #region MonoBehaviour
 
+    void Awake()
+    {
+        _player = GameObject.Find("FPSController");
+    }
+
     void Update()
     {
-        bool buttonFire1 = CrossPlatformInputManager.GetButtonDown("Fire1");
-
-        if (buttonFire1)
+        if ((Time.realtimeSinceStartup - _lastShootTime >= m_recoilTime) && CrossPlatformInputManager.GetButtonDown("Fire1"))
         {
-            Debug.Log("fire1 clicked");
-            GameObject hit = HitScanCenterPoint();
-            Debug.Log(hit);
-            EnemyController enemy = hit?.GetComponent<EnemyController>();
-            enemy?.Damage();
-            foreach (var point in GetSpreadPoints())
-                Debug.Log(point);
+            Vector3[] points = GetSpreadPoints(_centerScreen); // grab aim points
+            RaycastHit[] hits = GetHitsFromScreenPoints(points); // performs raycasts
+            // we store the total damage for each object hit so it's only applied once
+            Dictionary<GameObject, ObjDamageStore> damagesToApply = new Dictionary<GameObject, ObjDamageStore>();
+
+            foreach (RaycastHit hit in hits)
+            {
+                // only allow for hits within range, with 0 or less being no max range
+                if (m_maxRange <= 0 || Vector3.Distance(_player.transform.position, hit.point) <= m_maxRange)
+                {
+                    if (damagesToApply.ContainsKey(hit.collider.gameObject))
+                        damagesToApply[hit.collider.gameObject].AddHit(m_damagePerShot, hit.point);
+                    else
+                        damagesToApply.Add(hit.collider.gameObject,
+                                           new ObjDamageStore(m_damagePerShot, hit.point));
+                }
+            }
+
+            // loop through hits to apply damage
+            foreach (KeyValuePair<GameObject, ObjDamageStore> kv in damagesToApply)
+            {
+                EnemyController enemy = kv.Key.GetComponent<EnemyController>();
+                if (enemy != null) // only apply damage to enemies
+                    enemy.Damage(kv.Value.Damage);
+                CreateBulletTrails(kv.Value.BulletHits.ToArray()); // create bullet trails regardless since we shot
+            }
+
+            // we just shot, so reset timer
+            _lastShootTime = Time.realtimeSinceStartup;
         }
     }
 
     #endregion
 
     #region Helper Methods
-
-    bool GetHitFromScreenPoint(Vector3 screenPoint, out RaycastHit hit)
-    {
-        Ray hitScanRay = m_playerCamera.ScreenPointToRay(screenPoint);
-        return Physics.Raycast(hitScanRay, out hit);
-    }
 
     RaycastHit[] GetHitsFromScreenPoints(Vector3[] screenPoints)
     {
@@ -77,19 +125,10 @@ public class WeaponController : MonoBehaviour
         return hits.ToArray();
     }
 
-    /// <summary>
-    /// Simple hit-scan for the centre of the screen.
-    /// </summary>
-    /// <returns>The hit GameObject.</returns>
-    GameObject HitScanCenterPoint()
+    bool GetHitFromScreenPoint(Vector3 screenPoint, out RaycastHit hit)
     {
-        RaycastHit hitScanHit;
-        if (GetHitFromScreenPoint(_centerScreen, out hitScanHit))
-        {
-            Instantiate(m_bulletTrail).GetComponent<BulletTrailController>().Init(gameObject.transform.position, hitScanHit.point);
-            return hitScanHit.collider.gameObject;
-        }
-        return null;
+        Ray hitScanRay = Camera.main.ScreenPointToRay(screenPoint);
+        return Physics.Raycast(hitScanRay, out hit);
     }
 
     /// <summary>
@@ -102,8 +141,10 @@ public class WeaponController : MonoBehaviour
     /// for a remainder of 3, or over the whole area for a remainder of 1).
     /// </summary>
     /// <returns>The spread points.</returns>
-    internal Vector3[] GetSpreadPoints(float z = 0)
+    internal Vector3[] GetSpreadPoints(Vector3? offset = null, float z = 0)
     {
+        Vector3 offsetVector = offset ?? new Vector3();
+
         // the rotation and distance from centre for each shot
         Tuple<float, float>[] points = new Tuple<float, float>[m_numberBulletsPerShot];
         int nextIndex = 0;
@@ -129,7 +170,7 @@ public class WeaponController : MonoBehaviour
             // vector that it represents
             spreadPoints[i] = new Vector3(points[i].Item2 * Mathf.Cos(points[i].Item1 * Mathf.Deg2Rad),
                                           points[i].Item2 * Mathf.Sin(points[i].Item1 * Mathf.Deg2Rad),
-                                          z);
+                                          z) + offsetVector;
         }
         return spreadPoints;
     }
@@ -145,7 +186,7 @@ public class WeaponController : MonoBehaviour
     void CreateBulletTrails(params Vector3[] endPoints)
     {
         foreach (Vector3 point in endPoints)
-            Instantiate(m_bulletTrail).GetComponent<BulletTrailController>().Init(gameObject.transform.position, point);
+            Instantiate(m_bulletTrail).GetComponent<BulletTrailController>().Init(m_bulletTrailOriginObj.transform.position, point);
     }
 
     #endregion

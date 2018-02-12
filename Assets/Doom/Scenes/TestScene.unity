@@ -318,11 +318,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 539002319}
---- !u!20 &539002321 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 2}
-  m_PrefabInternal: {fileID: 539002319}
 --- !u!114 &539002322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,12 +329,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5227adad45d3449196d63ed0a3df116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerCamera: {fileID: 539002321}
   m_numberBulletsPerShot: 6
-  m_spreadRadius: 5
+  m_spreadRadius: 40
   m_sectorSplit: 4
+  m_damagePerShot: 1
+  m_maxRange: 0
+  m_recoilTime: 0
   m_bulletTrail: {fileID: 1471257687982758, guid: ec2c39df3c3c8467696533da89ab09f4,
     type: 2}
+  m_bulletTrailOriginObj: {fileID: 539002320}
 --- !u!1 &800434692 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
@@ -463,11 +461,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e150f078e1c4c25aebb40c78a79b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 539002320}
   m_audioSource: {fileID: 800434698}
   m_hurtSounds:
   - {fileID: 8300000, guid: a7e1efc1f62bb4f09940f74c79bc2e67, type: 3}
   - {fileID: 8300000, guid: 0bcce7d153a4245c7b24b76744613081, type: 3}
+  m_health: 100
+  m_chase: 1
+  m_moveSpeed: 1
 --- !u!1 &1087459916 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b2d2fac06cdff4ec4968b407f87f36d2, type: 3}
