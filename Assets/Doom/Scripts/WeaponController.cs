@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using Rng = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class WeaponController : MonoBehaviour
 {
     #region Unity Bindings
@@ -21,6 +22,7 @@ public class WeaponController : MonoBehaviour
     public float m_damagePerShot;
     public float m_maxRange;
     public float m_recoilTime;
+    public AudioClip m_fireSound;
     public GameObject m_bulletTrail;
     public GameObject m_bulletTrailOriginObj;
 
@@ -55,6 +57,7 @@ public class WeaponController : MonoBehaviour
     Vector2 _centerScreen = new Vector2(Screen.width / 2, Screen.height / 2);
     readonly float _sectorSize;
     GameObject _player;
+    AudioSource _audioSource;
     float _lastShootTime;
 
     #endregion
@@ -73,6 +76,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         _player = GameObject.Find("FPSController");
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -105,6 +109,10 @@ public class WeaponController : MonoBehaviour
                     enemy.Damage(kv.Value.Damage);
                 CreateBulletTrails(kv.Value.BulletHits.ToArray()); // create bullet trails regardless since we shot
             }
+
+            // play firing sound
+            _audioSource.clip = m_fireSound;
+            _audioSource.Play();
 
             // we just shot, so reset timer
             _lastShootTime = Time.realtimeSinceStartup;
