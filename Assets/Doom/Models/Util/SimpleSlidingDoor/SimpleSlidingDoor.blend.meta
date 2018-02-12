@@ -13,6 +13,7 @@ ModelImporter:
     400004: //RootNode
     2100000: Material
     2100002: Material_001
+    2100004: Material__SimpleSlidingDoor-texture_png
     2300000: DoorA
     2300002: DoorB
     3300000: DoorA
