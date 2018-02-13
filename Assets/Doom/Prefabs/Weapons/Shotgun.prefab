@@ -181,7 +181,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_numberBulletsPerShot: 8
-  m_spreadRadius: 100
+  m_spreadRadius: 60
   m_sectorSplit: 4
   m_damagePerShot: 4
   m_maxRange: 0
