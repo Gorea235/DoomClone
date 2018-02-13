@@ -1,62 +1,20 @@
 fileFormatVersion: 2
-guid: 4234da05f26400e429235e807a74cccf
-timeCreated: 1518521390
+guid: 227997eab52d46a46b37e8225a888445
+timeCreated: 1518531204
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: DOOR TEMPLATE.001
-    100002: First
-    100004: Ground
-    100006: Lamp
-    100008: //RootNode
-    100010: Pilar
-    100012: right outer wall
-    100014: Stairs G
-    100016: Stairs Left
-    100018: Stairs Right
-    400000: DOOR TEMPLATE.001
-    400002: First
-    400004: Ground
-    400006: Lamp
-    400008: //RootNode
-    400010: Pilar
-    400012: right outer wall
-    400014: Stairs G
-    400016: Stairs Left
-    400018: Stairs Right
-    2100000: No Name
-    2300000: DOOR TEMPLATE.001
-    2300002: First
-    2300004: Ground
-    2300006: Pilar
-    2300008: right outer wall
-    2300010: Stairs G
-    2300012: Stairs Left
-    2300014: Stairs Right
-    3300000: DOOR TEMPLATE.001
-    3300002: First
-    3300004: Ground
-    3300006: Pilar
-    3300008: right outer wall
-    3300010: Stairs G
-    3300012: Stairs Left
-    3300014: Stairs Right
-    4300000: Stairs Right
-    4300002: DOOR TEMPLATE.001
-    4300004: Ground
-    4300006: Pilar
-    4300008: right outer wall
-    4300010: First
-    6400000: DOOR TEMPLATE.001
-    6400002: First
-    6400004: Ground
-    6400006: Pilar
-    6400008: right outer wall
-    6400010: Stairs G
-    6400012: Stairs Left
-    6400014: Stairs Right
-    10800000: Lamp
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Pants
+    2100002: Contour
+    2100004: Skin
+    2100006: Body
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: PVC
+    6400000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
