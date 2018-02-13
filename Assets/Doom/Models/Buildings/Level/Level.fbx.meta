@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: 8916f458b61a7c3408d5231687cd3d62
+timeCreated: 1518486963
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: DOOR TEMPLATE.001
+    100002: First
+    100004: Ground
+    100006: Lamp
+    100008: left inner wall
+    100010: //RootNode
+    100012: Pilar
+    100014: platform
+    100016: right inner wall
+    100018: right inner wall.001
+    100020: right inner wall.002
+    100022: right inner wall.003
+    100024: STAIRS TEMPLATE
+    100026: STAIRS TEMPLATE.001
+    100028: STAIRS TEMPLATE.002
+    400000: DOOR TEMPLATE.001
+    400002: First
+    400004: Ground
+    400006: Lamp
+    400008: left inner wall
+    400010: //RootNode
+    400012: Pilar
+    400014: platform
+    400016: right inner wall
+    400018: right inner wall.001
+    400020: right inner wall.002
+    400022: right inner wall.003
+    400024: STAIRS TEMPLATE
+    400026: STAIRS TEMPLATE.001
+    400028: STAIRS TEMPLATE.002
+    2100000: No Name
+    2300000: DOOR TEMPLATE.001
+    2300002: First
+    2300004: Ground
+    2300006: left inner wall
+    2300008: Pilar
+    2300010: platform
+    2300012: right inner wall
+    2300014: right inner wall.001
+    2300016: right inner wall.002
+    2300018: right inner wall.003
+    2300020: STAIRS TEMPLATE
+    2300022: STAIRS TEMPLATE.001
+    2300024: STAIRS TEMPLATE.002
+    3300000: DOOR TEMPLATE.001
+    3300002: First
+    3300004: Ground
+    3300006: left inner wall
+    3300008: Pilar
+    3300010: platform
+    3300012: right inner wall
+    3300014: right inner wall.001
+    3300016: right inner wall.002
+    3300018: right inner wall.003
+    3300020: STAIRS TEMPLATE
+    3300022: STAIRS TEMPLATE.001
+    3300024: STAIRS TEMPLATE.002
+    4300000: left inner wall
+    4300002: right inner wall
+    4300004: platform
+    4300006: STAIRS TEMPLATE.002
+    4300008: DOOR TEMPLATE.001
+    4300010: Ground
+    4300012: Pilar
+    4300014: right inner wall.001
+    4300016: right inner wall.002
+    4300018: right inner wall.003
+    4300020: First
+    6400000: DOOR TEMPLATE.001
+    6400002: First
+    6400004: Ground
+    6400006: left inner wall
+    6400008: Pilar
+    6400010: platform
+    6400012: right inner wall
+    6400014: right inner wall.001
+    6400016: right inner wall.002
+    6400018: right inner wall.003
+    6400020: STAIRS TEMPLATE
+    6400022: STAIRS TEMPLATE.001
+    6400024: STAIRS TEMPLATE.002
+    10800000: Lamp
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
