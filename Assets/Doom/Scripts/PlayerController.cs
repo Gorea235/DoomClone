@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     #region Private Fields
 
-    const string healthTextFormat = "{0:P}";
+    const string healthTextFormat = "{0:P0}";
 
     DataStore _dataStorage;
     AudioSource _audioSource;
