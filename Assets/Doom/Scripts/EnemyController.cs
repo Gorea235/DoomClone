@@ -38,6 +38,28 @@ public class EnemyController : MonoBehaviour
 
     #endregion
 
+    #region Public Properties
+
+    public bool IsDead { get { return _dead; } }
+    public bool IsActive
+    {
+        get { return m_active; }
+        set { m_active = value; }
+    }
+    public bool IsChasing
+    {
+        get { return m_chase; }
+        set { m_chase = value; }
+    }
+
+    #endregion
+
+    #region Events
+
+    public event System.EventHandler OnDeath;
+
+    #endregion
+
     #region MonoBehaviour
 
     void Awake()
@@ -47,6 +69,8 @@ public class EnemyController : MonoBehaviour
         _dataStorage = GameObject.Find("DataStore").GetComponent<DataStore>();
         _audioSource = gameObject.GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
+        IsActive = m_active;
+        IsChasing = m_chase;
     }
 
     void Update()
@@ -54,7 +78,7 @@ public class EnemyController : MonoBehaviour
         if (_dead)
             return;
 
-        if (m_active)
+        if (IsActive)
         {
             if (Vector3.Distance(gameObject.transform.position, _player.transform.position) <= m_range)
             {
@@ -67,7 +91,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                if (m_chase)
+                if (IsChasing)
                 {
                     SetChasing();
                     DoChasePlayer(true);
@@ -124,6 +148,7 @@ public class EnemyController : MonoBehaviour
         _audioSource.Play();
         if (applyScore)
             _dataStorage.AddScore(m_killScore);
+        OnDeath?.Invoke(this, new System.EventArgs());
     }
 
     public void Damage(float amount)
