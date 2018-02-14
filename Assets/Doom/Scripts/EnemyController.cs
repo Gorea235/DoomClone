@@ -124,6 +124,7 @@ public class EnemyController : MonoBehaviour
         transform.LookAt(_player.transform);
         Vector3 newRot = transform.eulerAngles;
         newRot.x = 0;
+        newRot.z = 0;
         transform.eulerAngles = newRot + m_lookAtOffset;
 
         // apply acceleration
