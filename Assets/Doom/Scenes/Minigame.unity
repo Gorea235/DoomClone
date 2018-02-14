@@ -330,6 +330,7 @@ Transform:
   - {fileID: 774259394}
   - {fileID: 784053447}
   - {fileID: 1986123623}
+  - {fileID: 1482389010}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -586,6 +587,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224348616602828558, guid: 53ecfc60256d5451dad03ea1287f0ac9,
     type: 2}
   m_PrefabInternal: {fileID: 302345682}
+--- !u!114 &302345684 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114036913150059738, guid: 53ecfc60256d5451dad03ea1287f0ac9,
+    type: 2}
+  m_PrefabInternal: {fileID: 302345682}
+  m_Script: {fileID: 11500000, guid: 5760743ac118444ed814acdea06a3c85, type: 3}
 --- !u!1001 &315674542
 Prefab:
   m_ObjectHideFlags: 0
@@ -1286,6 +1293,12 @@ MonoBehaviour:
   m_endSequenceRamp: {fileID: 1054147608}
   m_endSequenceRampFinalPosition: {x: 2.52, y: 12.24, z: -19.67}
   m_winBonusScore: 50
+  m_objectiveController: {fileID: 302345684}
+  m_objectiveTextInitial: Find the Pro-Vice Chancellor
+  m_objectiveTextFirstRoomActive: Kill all enemies in the room
+  m_objectiveTextFirstRoomCleared: Look for the Pro-Vice Chancellor in the upper room
+  m_objectiveTextSecondRoomActive: Kill all enemies in the room
+  m_objectiveTextSecondRoomCleared: Secure the Pro-Vice Chancellor
 --- !u!1 &571149395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1721,7 @@ GameObject:
   - component: {fileID: 774259399}
   - component: {fileID: 774259398}
   - component: {fileID: 774259400}
+  - component: {fileID: 774259401}
   m_Layer: 0
   m_Name: UpperDoorTriggerA
   m_TagString: Untagged
@@ -1826,6 +1840,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: 0
   target: {fileID: 1835895454}
+  source: {fileID: 0}
+  triggerCount: 1
+  repeatTrigger: 0
+--- !u!114 &774259401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 774259393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8634e062924929664361c08745211fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
+  target: {fileID: 570994050}
   source: {fileID: 0}
   triggerCount: 1
   repeatTrigger: 0
@@ -3337,6 +3367,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &1482389009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1482389010}
+  - component: {fileID: 1482389012}
+  - component: {fileID: 1482389011}
+  m_Layer: 0
+  m_Name: FirstRoomClearedPassthrough
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482389010
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482389009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 137338195}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482389011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482389009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8634e062924929664361c08745211fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
+  target: {fileID: 570994050}
+  source: {fileID: 0}
+  triggerCount: 1
+  repeatTrigger: 0
+--- !u!114 &1482389012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482389009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8634e062924929664361c08745211fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
+  target: {fileID: 997821110}
+  source: {fileID: 0}
+  triggerCount: 1
+  repeatTrigger: 0
 --- !u!1001 &1494998444
 Prefab:
   m_ObjectHideFlags: 0
@@ -3623,7 +3715,7 @@ MonoBehaviour:
     - {fileID: 97699459}
     m_defaultActive: 0
     m_defaultChasing: 1
-    m_triggerOnAllDead: {fileID: 997821110}
+    m_triggerOnAllDead: {fileID: 1482389009}
     m_triggerAction: 0
   - m_enemies:
     - {fileID: 1650579034}

@@ -16,6 +16,12 @@ public class MinigameManager : MonoBehaviour
     public Vector3 m_endSequenceRampFinalPosition;
 
     public float m_winBonusScore;
+    public ObjectiveUiController m_objectiveController;
+    public string m_objectiveTextInitial;
+    public string m_objectiveTextFirstRoomActive;
+    public string m_objectiveTextFirstRoomCleared;
+    public string m_objectiveTextSecondRoomActive;
+    public string m_objectiveTextSecondRoomCleared;
 
     #endregion
 
@@ -79,9 +85,16 @@ public class MinigameManager : MonoBehaviour
         switch (_triggerCount)
         {
             case 0:
-                StartCoroutine("EndSequence");
+                m_objectiveController.UpdateObjective(m_objectiveTextFirstRoomCleared);
                 break;
             case 1:
+                m_objectiveController.UpdateObjective(m_objectiveTextSecondRoomActive);
+                break;
+            case 2:
+                m_objectiveController.UpdateObjective(m_objectiveTextSecondRoomCleared);
+                StartCoroutine("EndSequence");
+                break;
+            case 3:
                 Debug.Log("won game");
                 DataStore dataStorage = GameObject.Find("DataStore").GetComponent<DataStore>();
                 dataStorage.AddScore(m_winBonusScore);
@@ -109,6 +122,9 @@ public class MinigameManager : MonoBehaviour
         ApplyEnabled(m_startSequenceDisabledControllers, false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        m_objectiveController.ObjectiveText = "";
+        m_objectiveController.UpdateObjective(m_objectiveTextInitial, 0.4f);
+        m_objectiveController.Show();
         _startSequenceSphereStartScale = StartSequenceSphereScale;
         _startSequenceScalePercent = 0;
         while (StartSequenceSphereScalePercent < 1)
@@ -119,6 +135,7 @@ public class MinigameManager : MonoBehaviour
         ApplyEnabled(m_startSequenceDisabledControllers, true);
         Destroy(m_startSequenceSphere);
         m_startSequenceEndTrigger?.BroadcastMessage("DoActivateTrigger");
+        m_objectiveController.UpdateObjective(m_objectiveTextFirstRoomActive);
     }
 
     IEnumerator EndSequence()
