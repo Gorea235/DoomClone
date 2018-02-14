@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("failed game");
             _dataStorage.SetSucceeded(false);
+            // change scene
         }
         else
         {
