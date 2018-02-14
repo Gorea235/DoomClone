@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip[] m_hurtSounds;
     public float m_maxHealth;
+    [Range(0, 1)]
+    public float m_minHealthScoreModifier;
     public Mask m_healthBarMask;
     public Text m_HealthPercentText;
 
@@ -21,6 +23,12 @@ public class PlayerController : MonoBehaviour
     AudioSource _audioSource;
     float _health;
     Vector2 _defaultHealthBarMaskSize;
+
+    #endregion
+
+    #region Private Properties
+
+    float PercentHealth { get { return _health / m_maxHealth; } }
 
     #endregion
 
@@ -45,18 +53,17 @@ public class PlayerController : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        float percent = (_health / m_maxHealth);
-        m_healthBarMask.rectTransform.sizeDelta = new Vector2(_defaultHealthBarMaskSize.x * percent,
+        m_healthBarMask.rectTransform.sizeDelta = new Vector2(_defaultHealthBarMaskSize.x * PercentHealth,
                                                               _defaultHealthBarMaskSize.y);
-        m_HealthPercentText.text = string.Format(healthTextFormat, percent);
+        m_HealthPercentText.text = string.Format(healthTextFormat, PercentHealth);
     }
 
     public void Damage(float amount)
     {
-        // update health
+        // update items
         _health -= amount;
-        // update UI
         UpdateHealthBar();
+        _dataStorage.ScoreModifier = Mathf.Lerp(m_minHealthScoreModifier, 1, PercentHealth);
         // check if failed, otherwise play hurt sound
         if (_health <= 0)
         {
