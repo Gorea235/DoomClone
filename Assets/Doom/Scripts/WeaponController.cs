@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using Rng = UnityEngine.Random;
 
@@ -25,6 +26,7 @@ public class WeaponController : MonoBehaviour
     public AudioClip m_fireSound;
     public GameObject m_bulletTrail;
     public GameObject m_bulletTrailOriginObj;
+    public Image m_reticle;
 
     #endregion
 
@@ -76,6 +78,8 @@ public class WeaponController : MonoBehaviour
     {
         _player = GameObject.Find("FPSController");
         _audioSource = gameObject.GetComponent<AudioSource>();
+        float d = m_spreadRadius * 2;
+        m_reticle.rectTransform.sizeDelta = new Vector2(d, d);
     }
 
     void Update()
