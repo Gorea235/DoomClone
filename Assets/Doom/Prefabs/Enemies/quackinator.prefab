@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_active: 1
   m_chase: 1
   m_lookAtOffset: {x: 0, y: 180, z: 0}
-  m_maxMoveSpeed: 2
+  m_maxMoveSpeed: 3.5
   m_moveSpeedScale: -1
   m_acceleration: 0.2
   m_deceleration: 0.2
@@ -1215,9 +1215,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.2753763
-  m_Height: 9.916574
+  m_Height: 15.018789
   m_Direction: 1
-  m_Center: {x: 0, y: 5.4098744, z: 2.7045875}
+  m_Center: {x: 0, y: 7.9609833, z: 2.7045875}
 --- !u!137 &137008054472970542
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
