@@ -56,19 +56,10 @@ public class WeaponController : MonoBehaviour
     #region Private Fields
 
     Vector2 _centerScreen = new Vector2(Screen.width / 2, Screen.height / 2);
-    readonly float _sectorSize;
+    float _sectorSize;
     GameObject _player;
     AudioSource _audioSource;
     float _lastShootTime;
-
-    #endregion
-
-    #region Constructor
-
-    public WeaponController()
-    {
-        _sectorSize = 360f / m_sectorSplit;
-    }
 
     #endregion
 
@@ -76,6 +67,7 @@ public class WeaponController : MonoBehaviour
 
     void Awake()
     {
+        _sectorSize = 360f / m_sectorSplit;
         _player = GameObject.Find("FPSController");
         _audioSource = gameObject.GetComponent<AudioSource>();
         float d = m_spreadRadius * 2;
